@@ -325,6 +325,7 @@ export function MovementDialog({
 
         <Field label="Product" htmlFor="movement-product" required error={errors.productId?.message}>
           <Select
+            id="movement-product"
             ariaLabel="Product"
             value={selectedProductId}
             onValueChange={(value) => {

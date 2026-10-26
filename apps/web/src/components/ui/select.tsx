@@ -16,6 +16,7 @@ interface SelectProps {
   className?: string;
   disabled?: boolean;
   id?: string;
+  "aria-describedby"?: string;
 }
 
 export function Select({
@@ -26,13 +27,15 @@ export function Select({
   ariaLabel,
   className,
   disabled,
-  id
+  id,
+  "aria-describedby": ariaDescribedBy
 }: SelectProps) {
   return (
     <SelectPrimitive.Root value={value} onValueChange={onValueChange} disabled={disabled}>
       <SelectPrimitive.Trigger
         id={id}
         aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
         className={cn(
           "flex h-10 w-full items-center justify-between gap-2 rounded-lg border border-line bg-surface px-3 text-left text-[13px] text-ink-800",
           "transition-colors hover:border-ink-300 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-500/12",

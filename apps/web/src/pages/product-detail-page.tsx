@@ -27,7 +27,7 @@ import type { MovementType } from "../types";
 import { PageHeader } from "../components/page-header";
 import { Button } from "../components/ui/button";
 import { Select } from "../components/ui/select";
-import { Badge, MovementBadge, StockBadge } from "../components/ui/badge";
+import { Badge, StockBadge } from "../components/ui/badge";
 import { Skeleton, TableSkeleton } from "../components/ui/skeleton";
 import { EmptyState, ErrorState } from "../components/ui/states";
 import { Pagination } from "../components/ui/pagination";

@@ -30,8 +30,7 @@ import {
   formatDay,
   formatNumber,
   MOVEMENT_META,
-  relativeTime,
-  stockState
+  relativeTime
 } from "../lib/utils";
 import { PageHeader } from "../components/page-header";
 import { Button } from "../components/ui/button";
@@ -291,14 +290,14 @@ export function DashboardPage() {
                         <XAxis
                           dataKey="day"
                           tickFormatter={formatDay}
-                          tick={{ fontSize: 10, fill: "#8d8074" }}
+                          tick={{ fontSize: 10, fill: "#7a6b5f" }}
                           axisLine={false}
                           tickLine={false}
                           interval="preserveStartEnd"
                           minTickGap={24}
                         />
                         <YAxis
-                          tick={{ fontSize: 10, fill: "#8d8074" }}
+                          tick={{ fontSize: 10, fill: "#7a6b5f" }}
                           axisLine={false}
                           tickLine={false}
                           allowDecimals={false}

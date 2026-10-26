@@ -11,10 +11,11 @@
   --color-brand-300: #ffb077;
   --color-brand-400: #ff8a45;
   --color-brand-500: #f26722;
-  --color-brand-600: #dd4f0b;
-  --color-brand-700: #b93c08;
-  --color-brand-800: #92310c;
-  --color-brand-900: #762b0e;
+  /* 600+ are the accessible text/button tones (WCAG AA on white) */
+  --color-brand-600: #c2410c;
+  --color-brand-700: #9a3412;
+  --color-brand-800: #7c2d12;
+  --color-brand-900: #642814;
 
   /* Warm neutral ink */
   --color-ink-950: #120f0d;
@@ -23,7 +24,7 @@
   --color-ink-700: #3a312a;
   --color-ink-600: #55493f;
   --color-ink-500: #6f6257;
-  --color-ink-400: #8d8074;
+  --color-ink-400: #7a6b5f;
   --color-ink-300: #b3a79b;
   --color-ink-200: #d9d0c5;
   --color-ink-100: #ece5dc;

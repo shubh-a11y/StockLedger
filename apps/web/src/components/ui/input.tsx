@@ -1,4 +1,11 @@
-import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes } from "react";
+import {
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  type ReactElement,
+  type InputHTMLAttributes,
+  type TextareaHTMLAttributes
+} from "react";
 import { AlertCircle } from "lucide-react";
 import { cn } from "../../lib/utils";
 
@@ -62,6 +69,14 @@ interface FieldProps {
 }
 
 export function Field({ label, htmlFor, hint, error, required, children, className }: FieldProps) {
+  // Associate the control with its hint or error so screen readers announce it.
+  const describedBy = error ? `${htmlFor}-error` : hint ? `${htmlFor}-hint` : undefined;
+  const control = isValidElement(children)
+    ? cloneElement(children as ReactElement<Record<string, unknown>>, {
+        "aria-describedby": describedBy
+      })
+    : children;
+
   return (
     <div className={cn("space-y-1.5", className)}>
       <label
@@ -75,7 +90,7 @@ export function Field({ label, htmlFor, hint, error, required, children, classNa
           </span>
         ) : null}
       </label>
-      {children}
+      {control}
       {hint && !error ? (
         <p id={`${htmlFor}-hint`} className="text-[11px] text-ink-400">
           {hint}

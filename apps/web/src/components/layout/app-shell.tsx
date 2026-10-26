@@ -217,7 +217,9 @@ export function AppShell() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/login", { replace: true });
+      // Explicit sign-out always lands on a fresh dashboard after signing back
+      // in, rather than restoring the page the user just left.
+      navigate("/login", { replace: true, state: { from: "/" } });
     } catch {
       toast({
         title: "Could not sign out",
