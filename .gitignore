@@ -5,6 +5,9 @@ coverage/
 .env.*
 !.env.example
 *.log
+*.tsbuildinfo
+.freebuff/
+.agents/
 .DS_Store
 .vscode/
 apps/api/src/generated/
