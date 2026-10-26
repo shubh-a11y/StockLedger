@@ -12,6 +12,9 @@ enum UserRole {
   STAFF
 }
 
+/// The sign of a movement is derived from its type by the server:
+/// PURCHASE_IN / RETURN_IN / ADJUSTMENT_IN are positive,
+/// SALE_OUT / ADJUSTMENT_OUT are negative.
 enum MovementType {
   PURCHASE_IN
   SALE_OUT
@@ -33,6 +36,8 @@ model User {
   @@index([role])
 }
 
+/// Product metadata only. There is intentionally no editable stock column:
+/// the authoritative balance is derived from StockMovement rows.
 model Product {
   id                String          @id @default(cuid())
   sku               String          @unique
@@ -41,30 +46,40 @@ model Product {
   unit              String
   price             Decimal         @db.Decimal(12, 2)
   lowStockThreshold Int             @default(5)
+  archivedAt        DateTime?
   movements         StockMovement[]
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
 
   @@index([name])
   @@index([category])
+  @@index([archivedAt])
 }
 
+/// Append-only stock ledger. Movements are never updated or deleted by normal
+/// application flows; corrections are recorded as compensating adjustments.
 model StockMovement {
-  id             String       @id @default(cuid())
-  productId      String
-  actorId        String
-  type           MovementType
-  quantity       Int
-  reason         String
-  reference      String?
-  idempotencyKey String?      @unique
-  occurredAt     DateTime     @default(now())
-  createdAt      DateTime     @default(now())
+  id                 String       @id @default(cuid())
+  productId          String
+  actorId            String
+  type               MovementType
+  /// Always a positive integer; direction comes from `type`.
+  quantity           Int
+  reason             String
+  reference          String?
+  /// Optional client supplied key enabling safe retries.
+  idempotencyKey     String?      @unique
+  /// SHA-256 of the canonical request payload, used to detect key reuse.
+  requestFingerprint String?
+  occurredAt         DateTime     @default(now())
+  createdAt          DateTime     @default(now())
 
   product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
   actor   User    @relation("MovementActor", fields: [actorId], references: [id], onDelete: Restrict)
 
   @@index([productId, occurredAt])
+  @@index([productId, createdAt])
   @@index([actorId, occurredAt])
   @@index([type, occurredAt])
+  @@index([occurredAt])
 }

@@ -1,15 +1,19 @@
 {
   "name": "stockledger",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "workspaces": ["apps/api", "apps/web"],
   "scripts": {
-    "dev": "concurrently -k -n API,WEB -c blue,green \"npm run dev -w @stockledger/api\" \"npm run dev -w @stockledger/web\"",
+    "dev": "concurrently -k -n API,WEB -c yellow,green \"npm run dev -w @stockledger/api\" \"npm run dev -w @stockledger/web\"",
     "build": "npm run build -w @stockledger/api && npm run build -w @stockledger/web",
+    "typecheck": "npm run typecheck -w @stockledger/api && npm run typecheck -w @stockledger/web",
     "test": "npm run test -w @stockledger/api",
+    "test:watch": "npm run test:watch -w @stockledger/api",
     "db:generate": "npm run db:generate -w @stockledger/api",
     "db:migrate": "npm run db:migrate -w @stockledger/api",
-    "db:seed": "npm run db:seed -w @stockledger/api"
+    "db:deploy": "npm run db:deploy -w @stockledger/api",
+    "db:seed": "npm run db:seed -w @stockledger/api",
+    "db:studio": "npm run db:studio -w @stockledger/api"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
