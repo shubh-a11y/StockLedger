@@ -59,6 +59,7 @@ describe("CSV export helpers", () => {
 
 describe("idempotency fingerprints", () => {
   const base = {
+    actorId: "u1",
     productId: "p1",
     type: "SALE_OUT",
     quantity: 2,

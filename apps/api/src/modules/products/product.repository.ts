@@ -198,8 +198,8 @@ export async function inventoryTotals(): Promise<InventoryTotals> {
     SELECT
       COUNT(*)::int AS "totalProducts",
       COALESCE(SUM(balance.stock), 0)::int AS "totalUnits",
-      COUNT(*) FILTER (WHERE balance.stock <= p."lowStockThreshold")::int AS "lowStockCount",
-      COUNT(*) FILTER (WHERE balance.stock <= 0)::int AS "outOfStockCount"
+      COUNT(*) FILTER (WHERE COALESCE(balance.stock, 0) <= p."lowStockThreshold")::int AS "lowStockCount",
+      COUNT(*) FILTER (WHERE COALESCE(balance.stock, 0) <= 0)::int AS "outOfStockCount"
     FROM "Product" p
     LEFT JOIN (
       SELECT "productId",

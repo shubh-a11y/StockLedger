@@ -73,7 +73,14 @@ export async function recordMovement(params: RecordMovementParams): Promise<Reco
 
   assertCanRecordMovement(actor.role, type);
 
-  const fingerprint = movementFingerprint({ productId, type, quantity, reason, reference });
+  const fingerprint = movementFingerprint({
+    actorId: actor.id,
+    productId,
+    type,
+    quantity,
+    reason,
+    reference
+  });
 
   const buildReplay = (
     existing: movementRepository.MovementWithRelations,

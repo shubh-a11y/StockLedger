@@ -1,1 +1,0 @@
-Add automated tests for movement services and API authorization. At minimum, cover purchase, sale, insufficient stock, return, invalid input, staff permissions, concurrent last-unit sales, and rollback. Use a dedicated test database and clean up between tests; never point destructive tests at production.

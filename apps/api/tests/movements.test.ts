@@ -259,6 +259,23 @@ describe("idempotency", () => {
     expect(await getStock(owner.agent, product.id)).toBe(8);
   });
 
+  it("scopes an idempotency key to the actor who created it", async () => {
+    const product = await createProduct();
+    await owner.agent.post("/api/movements/purchase").send(movementBody(product.id, 10));
+    const key = "actor-scoped-key-01";
+
+    await owner.agent
+      .post("/api/movements/sale")
+      .send(movementBody(product.id, 2, { idempotencyKey: key }));
+
+    const replayByStaff = await staff.agent
+      .post("/api/movements/sale")
+      .send(movementBody(product.id, 2, { idempotencyKey: key }));
+
+    expect(replayByStaff.status).toBe(409);
+    expect(replayByStaff.body.error.code).toBe("IDEMPOTENCY_KEY_REUSED");
+  });
+
   it("resolves concurrent retries with one stored movement", async () => {
     const product = await createProduct();
     await owner.agent.post("/api/movements/purchase").send(movementBody(product.id, 10));
@@ -304,6 +321,9 @@ describe("reports and ledger queries", () => {
   it("returns dashboard totals derived from the ledger", async () => {
     const first = await createProduct({ lowStockThreshold: 5 });
     const second = await createProduct({ lowStockThreshold: 100 });
+    // A product with no movements must count as zero stock, not be skipped by
+    // NULL comparisons in the aggregate.
+    const neverMoved = await createProduct({ lowStockThreshold: 3 });
     await owner.agent.post("/api/movements/purchase").send(movementBody(first.id, 10));
     await owner.agent.post("/api/movements/purchase").send(movementBody(second.id, 2));
     await staff.agent.post("/api/movements/sale").send(movementBody(first.id, 4));
@@ -311,12 +331,15 @@ describe("reports and ledger queries", () => {
     const response = await owner.agent.get("/api/reports/dashboard");
     expect(response.status).toBe(200);
     expect(response.body.totals).toMatchObject({
-      totalProducts: 2,
+      totalProducts: 3,
       totalUnits: 8,
-      // second: 2 <= 100; first: 6 > 5 is healthy
-      lowStockCount: 1,
-      outOfStockCount: 0
+      // second: 2 <= 100; neverMoved: 0 <= 3; first: 6 > 5 is healthy
+      lowStockCount: 2,
+      outOfStockCount: 1
     });
+    expect(response.body.lowStock.map((product: { id: string }) => product.id)).toContain(
+      neverMoved.id
+    );
     expect(response.body.recentMovements).toHaveLength(3);
     expect(response.body.activity).toHaveLength(14);
   });
