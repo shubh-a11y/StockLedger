@@ -1,12 +1,52 @@
-# StockLedger
+# 📦 StockLedger
 
-A full-stack, ledger-first inventory workspace for a single shop. Stock is **never typed in**:
-every unit on hand is derived from an append-only history of purchases, sales, customer returns and
-adjustments. Owners manage the catalogue and reporting; staff record sales and returns.
+<p align="center">
+  <strong>A ledger-first inventory management system built for accuracy, auditability, and concurrency safety.</strong>
+  <br />
+  Track inventory through purchases, sales, customer returns, and adjustments — stock is derived from the movement ledger, never edited directly.
+</p>
 
-Built as a production-minded reference implementation with server-enforced permissions, PostgreSQL
-row locking for concurrency safety, idempotent movement retries, integration tests and a responsive
-React interface.
+<p align="center">
+  <a href="https://github.com/shubh-a11y/StockLedger"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub repository" /></a>
+  <a href="#screenshots"><img src="https://img.shields.io/badge/Preview-Screenshots-F26722?style=for-the-badge&logo=googlephotos&logoColor=white" alt="Screenshots" /></a>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Node.js-22-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+</p>
+
+<p align="center">
+  <a href="YOUR_DEMO_VIDEO_URL">▶️ Watch Demo Video</a>
+  &nbsp; • &nbsp;
+  <a href="https://github.com/shubh-a11y/StockLedger">📂 View Source Code</a>
+</p>
+
+---
+
+## 🖼️ Screenshots
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Login</strong><br />
+      <img src="https://github.com/user-attachments/assets/4b2fc3bb-7965-47e1-a9aa-18394e2f2047" alt="StockLedger dashboard overview" width="100%" />
+    </td>
+    <td align="center" width="50%">
+      <strong>Inventory Management</strong><br />
+      <img src="https://github.com/user-attachments/assets/70dd6dc9-a54b-4eb4-8009-a7a90df34d1a" alt="StockLedger inventory management screen" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Product and Stock Details</strong><br />
+      <img src="https://github.com/user-attachments/assets/9664b389-cfd3-4f1c-90ae-a5640da3865a" alt="StockLedger product and stock details" width="100%" />
+    </td>
+    <td align="center" width="50%">
+      <strong>Stock Movement Ledger</strong><br />
+      <img src="https://github.com/user-attachments/assets/7becaa72-98f2-4385-a407-8971a224c8e9" alt="StockLedger stock movement ledger" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -108,23 +148,6 @@ ink (`#1B1613`), emerald success states and restrained motion.
 
 ---
 
-## Screenshots
-
-> No genuine screenshots are committed yet. Do not present placeholders as evidence.
-> Add real captures to `docs/screenshots/` after running the app locally, then replace this section.
-
-| Screen | File (to add) |
-| --- | --- |
-| Login | `docs/screenshots/login.png` |
-| Dashboard | `docs/screenshots/dashboard.png` |
-| Products | `docs/screenshots/products.png` |
-| Product detail | `docs/screenshots/product-detail.png` |
-| Movement ledger | `docs/screenshots/movements.png` |
-| Low stock / reports | `docs/screenshots/reports.png` |
-| Mobile (390 px) | `docs/screenshots/mobile.png` |
-
----
-
 ## Architecture
 
 ```mermaid
@@ -179,7 +202,19 @@ apps/web/src/
 
 ---
 
-## Tech stack
+## 🧰 Tech stack
+
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="42" height="42" title="React" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="42" height="42" title="TypeScript" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="Vite" width="42" height="42" title="Vite" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" width="42" height="42" title="Tailwind CSS" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="42" height="42" title="Node.js" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="42" height="42" title="Express" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="42" height="42" title="PostgreSQL" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" alt="Prisma" width="42" height="42" title="Prisma" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="42" height="42" title="Docker" />
+</p>
 
 | Layer | Technology |
 | --- | --- |
@@ -725,8 +760,7 @@ The production API build was started on port 4100 and answered
 
 ## Deployment
 
-A live deployment is **not** included. Credentials/hosting were not provided, and nothing has been
-published. These are the exact steps to deploy.
+A live deployment is **not** included. These are the exact steps to deploy.
 
 ### 1. PostgreSQL
 
@@ -859,9 +893,6 @@ See [`.env.example`](.env.example), [`apps/api/.env.example`](apps/api/.env.exam
 
 ## Known limitations
 
-- **No live deployment or public repository** has been created from this workspace; deployment steps
-  are documented above.
-- **Screenshots are placeholders** — none have been captured/committed yet.
 - **Low-stock report** returns up to 500 products (no pagination on that endpoint). CSV export is
   fully paged.
 - **Movement form product picker** loads the first 100 active products. There is no server-side
@@ -943,21 +974,6 @@ See [`.env.example`](.env.example), [`apps/api/.env.example`](apps/api/.env.exam
   temporary Chrome browser automation.
 - All claims above reflect commands actually executed in this workspace on 2026-10-27. Nothing was
   deployed or published. No test results or screenshots are invented.
-
----
-
-## Demo video outline (3–5 minutes)
-
-1. **Intro (0:00–0:30)** — What StockLedger is: a ledger-first inventory app.
-2. **Login & roles (0:30–1:00)** — Sign in as owner; point out role badge and demo accounts.
-3. **Dashboard (1:00–1:30)** — Live totals from the API, activity chart, low-stock warnings.
-4. **Products (1:30–2:15)** — Search/filter, open a product, show calculated stock and history.
-5. **Record movements (2:15–3:00)** — Record a sale (stock decreases); show idempotent retry?;
-   open an owner purchase/adjustment; explain no stock field exists.
-6. **Concurrency & permissions (3:00–3:45)** — Staff login: no purchase/product controls, owner-only
-   pages denied; mention row locks and 48 tests.
-7. **Reports (3:45–4:15)** — Low-stock report and CSV download.
-8. **Wrap (4:15–4:45)** — Mobile view, security notes, what you would improve next.
 
 ---
 
