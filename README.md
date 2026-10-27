@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_DEMO_VIDEO_URL">▶️ Watch Demo Video</a>
+  <a href="https://drive.google.com/file/d/1xLQiBF2EXDdNKzDQxNUG2p7LmKliPP_j/view?usp=sharing">▶️ Watch Demo Video</a>
   &nbsp; • &nbsp;
   <a href="https://github.com/shubh-a11y/StockLedger">📂 View Source Code</a>
 </p>
