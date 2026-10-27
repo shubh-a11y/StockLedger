@@ -963,17 +963,18 @@ See [`.env.example`](.env.example), [`apps/api/.env.example`](apps/api/.env.exam
 
 ---
 
-## AI tools used
+## AI Tools Used
 
-- **Buffy (Codebuff)** running the DeepSeek V4.1 Flash model was used throughout: repository
-  inspection, architecture, Prisma schema/migration, backend modules, authentication and
-  authorization, movement transaction protocol, seed data, tests, frontend UI, documentation and
-  verification.
-- The agent ran real commands: Docker/PostgreSQL, installs, migrations, seed, Prisma generate,
-  Vitest/Supertest suites, TypeScript type checks, production builds, API smoke tests with cURL and
-  temporary Chrome browser automation.
-- All claims above reflect commands actually executed in this workspace on 2026-10-27. Nothing was
-  deployed or published. No test results or screenshots are invented.
+AI tools were used as development assistants throughout the project, supporting an iterative, step-by-step workflow rather than generating the entire application in a single pass.
+
+- **Freebuff:** Assisted with repository exploration, architecture planning, implementation of backend and frontend modules, Prisma schema and migrations, authentication and authorization, inventory movement logic, seed data, automated tests, and documentation.
+- **ChatGPT:** Used for technical guidance, understanding architectural decisions, debugging, reviewing implementation approaches, refining documentation, and improving understanding of system design and code flow.
+- **Google Gemini:** Used as an additional AI assistant for exploring implementation approaches, troubleshooting issues, and supporting development and review.
+
+The project was built incrementally: requirements were broken down into smaller tasks, AI-assisted suggestions were evaluated and refined, implementation issues were addressed, and the resulting application was tested and verified.
+
+Development and verification included Docker/PostgreSQL, database migrations and seeding, Prisma Client generation, Vitest/Supertest tests, TypeScript type checks, production builds, API smoke tests with cURL, and browser-based UI verification.
+
 
 ---
 
