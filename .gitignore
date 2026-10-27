@@ -12,3 +12,6 @@ coverage/
 .vscode/
 apps/api/src/generated/
 apps/api/prisma/*.db
+apps/web/src/starting.js
+context.md
+
